@@ -43,6 +43,7 @@ except Exception as e:
 
 # 답변 히스토리 누적 함수
 async def process_query(query, conversation_history):
+  # print(query)
   messages = [HumanMessage(content=system_prompt)]
 
   # 기존 대화 내용 추가
@@ -65,6 +66,7 @@ async def process_query(query, conversation_history):
 
   # 답변을 coversation_history에 추가
   answer = ai_message[-1] if ai_message else '응답을 생성할 수 없습니다.'
+  conversation_history.append((query, answer))
 
   return answer
 
